@@ -1,0 +1,11 @@
+.git
+.DS_Store
+.vscode
+build
+install
+log
+images
+videos
+*.bag
+*.db3
+*.mcap

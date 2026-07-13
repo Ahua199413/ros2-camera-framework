@@ -65,8 +65,40 @@ from version control.
 - Languages: C++ and Python
 - Vision stack: OpenCV and `cv_bridge`
 
-Build and run instructions will be added after the first ROS package is created
-and verified on Ubuntu.
+## Docker development on macOS
+
+The Docker environment provides ROS 2 Jazzy on Ubuntu 24.04 for command-line
+learning and package development. Source files remain in this repository on the
+Mac and are mounted at `/workspace` in the container.
+
+Build the development image:
+
+```bash
+docker compose build
+```
+
+Open a ROS 2 shell:
+
+```bash
+docker compose run --rm ros2-dev
+```
+
+Inside the container, confirm the environment:
+
+```bash
+ros2 --help
+colcon --help
+uname -m
+```
+
+Use `exit` to leave the container. ROS build artifacts remain in the mounted
+workspace but are ignored by Git.
+
+Docker is intended for ROS command-line exercises and compilation. USB camera,
+RViz, GPU, and full pipeline integration will be verified natively on Ubuntu.
+
+Package-specific build and run instructions will be added after the first ROS
+package is completed.
 
 ## Status
 
