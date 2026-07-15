@@ -1,6 +1,7 @@
 #include <chrono>
 #include <functional>
 #include <memory>
+#include <string>
 
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
@@ -14,7 +15,7 @@ private:
 
   void publish_status() {
     auto message = std_msgs::msg::String();
-    message.data = "Camera running";
+    message.data = this->get_parameter("status_message").as_string();
     publisher_->publish(message);
 
     RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
@@ -22,8 +23,14 @@ private:
 
 public:
   StatusPublisher() : Node("status_publisher") {
+    this->declare_parameter<std::string>(
+        "status_message",
+        "Camera running"
+    );
+
     publisher_ =
-        this->create_publisher<std_msgs::msg::String>("/camera/status", 10);
+        this->create_publisher<std_msgs::msg::String>(
+          "/camera/status", 10);
 
     timer_ = this->create_wall_timer(
         1s, std::bind(&StatusPublisher::publish_status, this));
