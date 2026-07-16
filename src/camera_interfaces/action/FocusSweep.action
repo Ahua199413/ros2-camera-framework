@@ -1,0 +1,15 @@
+# Goal
+int32 start_position
+int32 end_position
+int32 step
+---
+# Result
+bool success
+int32 best_position
+float64 best_score
+string message
+---
+# Feedback
+int32 current_position
+float64 current_score
+float32 progress
