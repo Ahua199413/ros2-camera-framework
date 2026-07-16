@@ -4,6 +4,7 @@ project(camera_learning)
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(std_srvs REQUIRED)
 
 add_executable(hello_node src/hello_node.cpp)
 
@@ -17,6 +18,7 @@ ament_target_dependencies(
   status_publisher
   rclcpp
   std_msgs
+  std_srvs
 )
 
 add_executable(status_subscriber src/status_subscriber.cpp)
